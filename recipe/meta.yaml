@@ -32,7 +32,6 @@ requirements:
     - pkg-config
     - {{ posix }}diffutils
     - {{ posix }}patch
-    - highfive <3
   host:
     - r-base
     - r-matrix
@@ -46,6 +45,8 @@ requirements:
     - libblas
     - libcblas
     - liblapack
+    - highfive <3
+
   run:
     - r-base
     - r-matrix
