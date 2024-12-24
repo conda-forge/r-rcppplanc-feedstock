@@ -4,6 +4,8 @@ package:
   name: r-rcppplanc
   version: {{ version|replace("-", "_") }}
 source:
+  patch:
+    - remove-hardcoded-dep-path.patch
   url: https://github.com/welch-lab/RcppPlanc/archive/refs/tags/{{ version }}.tar.gz
   sha256: 52438cd47c087eaceb9ad730c3782f4d0bc725957efb46cd11d0d84c9d18d603
 build:
