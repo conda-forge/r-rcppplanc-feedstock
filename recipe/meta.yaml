@@ -5,7 +5,7 @@ package:
   version: {{ version|replace("-", "_") }}
 source:
   url: https://github.com/welch-lab/RcppPlanc/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 049dc355a27571db54f3da91884397518898d37cb553024539b56bff1d52ec2a
+  sha256: a628e2ff763387934c471dbfa4928b13c6d6f66364f1017d8d748df514282b14
 build:
   # Checking windows to see if it passes. Uncomment the line if it fails.
   # skip: True  # [win]
