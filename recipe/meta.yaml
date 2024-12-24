@@ -30,7 +30,7 @@ requirements:
     - pkg-config
     - {{ posix }}diffutils
     - {{ posix }}patch
-    - highfive < 3
+    - highfive <3
   host:
     - r-base
     - r-matrix
