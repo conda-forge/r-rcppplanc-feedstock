@@ -2,7 +2,7 @@ diff --git a/configure b/configure
 index 4afa666..0df0033 100755
 --- a/configure
 +++ b/configure
-@@ -28,7 +28,7 @@ R_SHLIB_EXT=`"${R_HOME}/bin/R" CMD config SHLIB_EXT`
+@@ -27,7 +27,7 @@ R_SHLIB_EXT=`"${R_HOME}/bin/R" CMD config SHLIB_EXT`
 
 
  CFLAGS="$CPPFLAGS $CFLAGS $EXTRACFLAGS"
