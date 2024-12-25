@@ -9,14 +9,14 @@
 # https://github.com/jeroen/autobrew/issues/3
 export DISABLE_AUTOBREW=1
 #disable clang availability checks
-CXXFLAGS="-D_LIBCPP_DISABLE_AVAILABILITY $CXXFLAGS"
-ref=CMAKE_ARGS
-IFS= read -r -- "$ref" <<< "-DCMAKE_CXX_FLAGS=\"$CXXFLAGS\" $CMAKE_ARGS"
-
+CMAKE_ARGS=-D_LIBCPP_DISABLE_AVAILABILITY -DCMAKE_CXX_FLAGS=${CXXFLAGS} ${CMAKE_ARGS}
 export CMAKE_ARGS
 
 # R refuses to build packages that mark themselves as Priority: Recommended
 mv DESCRIPTION DESCRIPTION.old
 grep -va '^Priority: ' DESCRIPTION.old > DESCRIPTION
 # shellcheck disable=SC2086
+echo CXXFLAGS $CXXFLAGS
+echo CMAKE_ARGS $CMAKE_ARGS
+
 ${R} CMD INSTALL --build . ${R_ARGS}
