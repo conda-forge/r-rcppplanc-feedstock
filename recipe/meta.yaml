@@ -7,7 +7,7 @@ source:
   patches:
     - patches/remove-hardcoded-dep-path.patch
   url: https://github.com/welch-lab/RcppPlanc/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 6fc4ec5bdfbd36c6bbdeb67454a698fc6d92bd8f4f0f683cf532264605054ae1
+  sha256: d0a63c235539d6b7367d9b951aafb3861a6fe72f127307c5400608f56bd076ab
 build:
   # Checking windows to see if it passes. Uncomment the line if it fails.
   # skip: True  # [win]
