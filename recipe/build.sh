@@ -10,6 +10,7 @@
 export DISABLE_AUTOBREW=1
 #disable clang availability checks
 export CXXFLAGS="-D_LIBCPP_DISABLE_AVAILABILITY ${CXXFLAGS}"
+export CMAKE_ARGS='-D_CMAKE_CXX_FLAGS="${CXXFLAGS}" "${CMAKE_ARGS}"'
 
 # R refuses to build packages that mark themselves as Priority: Recommended
 mv DESCRIPTION DESCRIPTION.old
