@@ -17,6 +17,8 @@ build:
     - lib/
 requirements:
   build:
+    - cross-r-base {{ r_base }}  # [build_platform != target_platform]
+    - gnuconfig  # [unix]
     - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ compiler('cxx') }}            # [not win]
@@ -24,7 +26,8 @@ requirements:
     - {{ posix }}filesystem        # [win]
     - {{ posix }}git
     - {{ posix }}zip               # [win]
-    - {{ stdlib("c") }}
+    - {{ stdlib("c") }}  # [not win]
+    - {{ stdlib("m2w64_c" )}}  # [win]
     - cmake >=3.22
     - make
     - llvm-openmp  # [osx]
