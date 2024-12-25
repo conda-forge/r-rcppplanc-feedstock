@@ -9,8 +9,9 @@
 # https://github.com/jeroen/autobrew/issues/3
 export DISABLE_AUTOBREW=1
 #disable clang availability checks
-export CXXFLAGS="-D_LIBCPP_DISABLE_AVAILABILITY ${CXXFLAGS}"
-export CMAKE_ARGS='-DCMAKE_CXX_FLAGS=\"${CXXFLAGS} ${CMAKE_ARGS}\"'
+CXXFLAGS="-D_LIBCPP_DISABLE_AVAILABILITY $CXXFLAGS"
+ref=CMAKE_ARGS
+IFS= read -r -- "$ref" <<< "-DCMAKE_CXX_FLAGS=\"$CXXFLAGS\" $CMAKE_ARGS"
 
 # R refuses to build packages that mark themselves as Priority: Recommended
 mv DESCRIPTION DESCRIPTION.old
