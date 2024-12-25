@@ -13,6 +13,8 @@ CXXFLAGS="-D_LIBCPP_DISABLE_AVAILABILITY $CXXFLAGS"
 ref=CMAKE_ARGS
 IFS= read -r -- "$ref" <<< "-DCMAKE_CXX_FLAGS=\"$CXXFLAGS\" $CMAKE_ARGS"
 
+export CMAKE_ARGS
+
 # R refuses to build packages that mark themselves as Priority: Recommended
 mv DESCRIPTION DESCRIPTION.old
 grep -va '^Priority: ' DESCRIPTION.old > DESCRIPTION
