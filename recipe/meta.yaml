@@ -27,7 +27,7 @@ requirements:
     - {{ posix }}git
     - {{ posix }}zip               # [win]
     - {{ stdlib("c") }}  # [not win]
-    - {{ stdlib("m2w64_c" )}}  # [win]
+    - {{ stdlib("m2w64_c") }}  # [win]
     - cmake >=3.22
     - make
     - llvm-openmp  # [osx]
