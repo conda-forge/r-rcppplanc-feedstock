@@ -16,7 +16,4 @@ export CMAKE_ARGS
 mv DESCRIPTION DESCRIPTION.old
 grep -va '^Priority: ' DESCRIPTION.old > DESCRIPTION
 # shellcheck disable=SC2086
-echo CXXFLAGS $CXXFLAGS
-echo CMAKE_ARGS $CMAKE_ARGS
-
 ${R} CMD INSTALL --build . ${R_ARGS}
