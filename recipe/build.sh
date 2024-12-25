@@ -8,9 +8,6 @@
 # these 'system' dependencies. See:
 # https://github.com/jeroen/autobrew/issues/3
 export DISABLE_AUTOBREW=1
-#disable clang availability checks
-CMAKE_ARGS=-D_LIBCPP_DISABLE_AVAILABILITY -DCMAKE_CXX_FLAGS=${CXXFLAGS} ${CMAKE_ARGS}
-export CMAKE_ARGS
 
 # R refuses to build packages that mark themselves as Priority: Recommended
 mv DESCRIPTION DESCRIPTION.old

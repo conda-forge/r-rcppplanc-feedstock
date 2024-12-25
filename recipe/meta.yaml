@@ -6,6 +6,7 @@ package:
 source:
   patches:
     - patches/remove-hardcoded-dep-path.patch
+    - patches/add-cxx-libc-availability.patch
   url: https://github.com/welch-lab/RcppPlanc/archive/refs/tags/{{ version }}.tar.gz
   sha256: d0a63c235539d6b7367d9b951aafb3861a6fe72f127307c5400608f56bd076ab
 build:
