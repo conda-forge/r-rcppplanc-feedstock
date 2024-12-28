@@ -7,9 +7,9 @@ source:
   patches:
     - patches/remove-hardcoded-dep-path.patch
     - patches/add-cxx-libc-availability.patch    # [not win]
-    - patches/select-generator-explicitly.patch  # [win]
+    - patches/Windows-explicit-options.patch  # [win]
   url: https://github.com/welch-lab/RcppPlanc/archive/refs/tags/{{ version }}.tar.gz
-  sha256: d0a63c235539d6b7367d9b951aafb3861a6fe72f127307c5400608f56bd076ab
+  sha256: a39ad91d83f9cd7257e7b2e00fafe98a4313ed358b33cbd7cb100b1cf67543c0
 build:
   # Checking windows to see if it passes. Uncomment the line if it fails.
   # skip: True  # [win]
