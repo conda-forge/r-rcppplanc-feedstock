@@ -5,7 +5,7 @@ index 7b43c83..fe7ab75 100644
 @@ -22,7 +22,7 @@
  cd src
 -cmake ../tools \
-+cmake -G "MinGW Makefiles" ../tools -DBLA_VENDOR="Generic" \
++echo "-I${INCLUDE}" && cmake -G "MinGW Makefiles" ../tools -DBLA_VENDOR="Generic" \
    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
 -  -DCMAKE_C_FLAGS_INIT="" \
 -  -DCMAKE_CXX_FLAGS_INIT="" \
