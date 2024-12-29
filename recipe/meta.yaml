@@ -9,7 +9,7 @@ source:
     - patches/add-cxx-libc-availability.patch    # [not win]
     - patches/Windows-explicit-options.patch  # [win]
   url: https://github.com/welch-lab/RcppPlanc/archive/refs/tags/{{ version }}.tar.gz
-  sha256: cb18ad7df46987abdca29e73b9ac1cf8a6eae382924546682e94e04ac969a4b1
+  sha256: 8d484a27815b02d512e729cfc8f59ace35e17f7062ff114fd9476b74f15453b0
 build:
   # Checking windows to see if it passes. Uncomment the line if it fails.
   # skip: True  # [win]
