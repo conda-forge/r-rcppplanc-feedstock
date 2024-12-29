@@ -51,6 +51,7 @@ requirements:
     - libcblas
     - liblapack
     - highfive <3
+    - dlfcn-win32  # [win]
 
   run:
     - r-base
