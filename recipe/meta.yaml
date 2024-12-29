@@ -47,7 +47,6 @@ requirements:
     - zlib
     - hdf5 >=1.10
     - llvm-openmp  # [osx]
-    - libgomp      # [win]
     - libblas
     - libcblas
     - liblapack
