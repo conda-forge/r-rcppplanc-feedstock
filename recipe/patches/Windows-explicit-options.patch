@@ -6,7 +6,7 @@ index 7b43c83..fe7ab75 100644
  LDFLAGS=`"${R_HOME}/bin/R" CMD config LDFLAGS`
  FLIBS=`"${R_HOME}/bin/R" CMD config FLIBS`
 -
-+LDFLAGS="$LDFLAGS -L${PREFIX}/Library/lib"
++LDFLAGS="$LDFLAGS -L${PREFIX}/Library/lib -lgomp"
  CFLAGS="$CPPFLAGS $CFLAGS"
  CXXFLAGS="$CPPFLAGS $CXXFLAGS"
 @@ -22,7 +22,7 @@
