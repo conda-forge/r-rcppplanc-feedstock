@@ -33,7 +33,7 @@ requirements:
     - cmake >=3.22
     - make
     - llvm-openmp  # [osx]
-    - libgomp      # [linux]
+    - libgomp      # [not osx]
     - pkg-config
     - {{ posix }}diffutils
     - {{ posix }}patch
@@ -61,6 +61,7 @@ requirements:
     - r-rcppprogress
     - libblas  # [not (osx and arm64)]
     - libblas * *accelerate  # [osx and arm64]
+    - libgomp # [win]
 test:
   commands:
     - $R -e "library('RcppPlanc')"           # [not win]
