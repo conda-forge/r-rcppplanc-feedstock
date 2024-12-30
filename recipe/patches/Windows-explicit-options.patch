@@ -2,6 +2,13 @@ diff --git a/configure.ucrt b/configure.ucrt
 index 7b43c83..fe7ab75 100644
 --- a/configure.ucrt
 +++ b/configure.ucrt
+@@ -13,5 +13,5 @@
+ LDFLAGS=`"${R_HOME}/bin/R" CMD config LDFLAGS`
+ FLIBS=`"${R_HOME}/bin/R" CMD config FLIBS`
+-
++LDFLAGS="$LDFLAGS -L${PREFIX}/Library/lib"
+ CFLAGS="$CPPFLAGS $CFLAGS"
+ CXXFLAGS="$CPPFLAGS $CXXFLAGS"
 @@ -22,7 +22,7 @@
  cd src
 -cmake ../tools \
