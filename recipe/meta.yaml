@@ -61,7 +61,7 @@ requirements:
     - r-rcppprogress
     - libblas  # [not (osx and arm64)]
     - libblas * *accelerate  # [osx and arm64]
-    - libgomp # [win]
+    - libgomp  # [win]
 test:
   commands:
     - $R -e "library('RcppPlanc')"           # [not win]
