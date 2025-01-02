@@ -6,13 +6,13 @@ index 7b43c83..fe7ab75 100644
  LDFLAGS=`"${R_HOME}/bin/R" CMD config LDFLAGS`
  FLIBS=`"${R_HOME}/bin/R" CMD config FLIBS`
 -
-+LDFLAGS="$LDFLAGS -L${PREFIX}/Library/lib -lgomp"
++LDFLAGS_OVERRIDE="$LDFLAGS -L${PREFIX}/Library/lib -lgomp"
  CFLAGS="$CPPFLAGS $CFLAGS"
  CXXFLAGS="$CPPFLAGS $CXXFLAGS"
 @@ -22,7 +22,7 @@
  cd src
 -cmake ../tools \
-+echo "${LDFLAGS}" && cmake -G "MinGW Makefiles" ../tools -DBLA_VENDOR="Generic" \
++cmake -e env LDFLAGS="${LDFLAGS_OVERRIDE}" cmake -G "MinGW Makefiles" ../tools -DBLA_VENDOR="Generic" \
    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
 -  -DCMAKE_C_FLAGS_INIT="" \
 -  -DCMAKE_CXX_FLAGS_INIT="" \
