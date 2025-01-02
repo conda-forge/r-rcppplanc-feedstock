@@ -1,20 +1,28 @@
-{% set version = '1.0.0-rc2' %}
+{% set version = '1.0.0-rc3' %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 package:
   name: r-rcppplanc
   version: {{ version|replace("-", "_") }}
 source:
+  patches:
+    - patches/remove-hardcoded-dep-path.patch
+    - patches/add-cxx-libc-availability.patch    # [not win]
+    - patches/Windows-explicit-options.patch  # [win]
   url: https://github.com/welch-lab/RcppPlanc/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 20663306ba3f52073a33d435e14015d3667f3b266d820379364b53cce0606f20
+  sha256: 70fd068ed50acf99c07f1dc158f8884fe49a327eda796a5f95b6283cf719ae29
 build:
-  skip: True  # [win]
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
   number: 0
   rpaths:
     - lib/R/lib/
     - lib/
 requirements:
   build:
+    - cross-r-base {{ r_base }}  # [build_platform != target_platform]
+    - gnuconfig  # [unix]
     - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ compiler('cxx') }}            # [not win]
@@ -22,11 +30,12 @@ requirements:
     - {{ posix }}filesystem        # [win]
     - {{ posix }}git
     - {{ posix }}zip               # [win]
-    - {{ stdlib("c") }}
+    - {{ stdlib("c") }}  # [not win]
+    - {{ stdlib("m2w64_c") }}  # [win]
     - cmake >=3.22
     - make
     - llvm-openmp  # [osx]
-    - libgomp      # [linux]
+    - libgomp      # [not osx]
     - pkg-config
     - {{ posix }}diffutils
     - {{ posix }}patch
@@ -40,18 +49,22 @@ requirements:
     - zlib
     - hdf5 >=1.10
     - llvm-openmp  # [osx]
+    - libgomp  # [not osx]
     - libblas
     - libcblas
     - liblapack
+    - highfive <3
+    - dlfcn-win32  # [win]
+
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-matrix
     - r-rcpp
     - r-rcpparmadillo
     - r-rcppprogress
     - libblas  # [not (osx and arm64)]
     - libblas * *accelerate  # [osx and arm64]
+    - libgomp  # [win]
 test:
   commands:
     - $R -e "library('RcppPlanc')"           # [not win]
