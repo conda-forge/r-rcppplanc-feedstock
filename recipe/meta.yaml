@@ -11,8 +11,10 @@ source:
   url: https://github.com/welch-lab/RcppPlanc/archive/refs/tags/{{ version }}.tar.gz
   sha256: 70fd068ed50acf99c07f1dc158f8884fe49a327eda796a5f95b6283cf719ae29
 build:
-  # Checking windows to see if it passes. Uncomment the line if it fails.
-  # skip: True  # [win]
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
   number: 0
   rpaths:
     - lib/R/lib/
