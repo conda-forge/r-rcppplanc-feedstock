@@ -7,7 +7,7 @@ index df5c33e..c15e34b 100644
 
  # Find R.
 -find_program(R_EXECUTABLE R DOC "R executable.")
-+find_program(R_EXECUTABLE R DOC "R executable." PATHS ENV BUILD_PREFIX PATH_SUFFIXES bin)
++set(R_EXECUTABLE $ENV{R})
 
  if(R_EXECUTABLE)
      # Get the location of R.
