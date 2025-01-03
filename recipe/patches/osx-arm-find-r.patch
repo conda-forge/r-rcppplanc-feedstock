@@ -53,3 +53,14 @@ index df5c33e..53c9912 100644
  
  include(FindPackageHandleStandardArgs)
  find_package_handle_standard_args(
+--- a/configure
++++ b/configure
+@@ -32,7 +32,7 @@ CXXFLAGS="$CPPFLAGS $CXXFLAGS $EXTRACXXFLAGS -D_LIBCPP_DISABLE_AVAILABILITY"
+ #LDFLAGS="$R_LDFLAGS $R_SHLDFLAGS"
+
+ cd src
+-$CMAKE ../tools \
++$CMAKE --debug-find ../tools \
+   -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+   -DCMAKE_C_FLAGS_INIT="" \
+   -DCMAKE_CXX_FLAGS_INIT="" \
