@@ -1,0 +1,13 @@
+diff --git a/tools/cmake/FindR.cmake b/tools/cmake/FindR.cmake
+index df5c33e..c15e34b 100644
+--- a/tools/cmake/FindR.cmake
++++ b/tools/cmake/FindR.cmake
+@@ -35,7 +35,7 @@ set(TEMP_CMAKE_FIND_APPBUNDLE ${CMAKE_FIND_APPBUNDLE})
+ set(CMAKE_FIND_APPBUNDLE "NEVER")
+
+ # Find R.
+-find_program(R_EXECUTABLE R DOC "R executable.")
++find_program(R_EXECUTABLE R DOC "R executable." PATHS ENV BUILD_PREFIX PATH_SUFFIXES bin)
+
+ if(R_EXECUTABLE)
+     # Get the location of R.
