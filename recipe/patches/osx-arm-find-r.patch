@@ -11,3 +11,14 @@ index df5c33e..c15e34b 100644
 
  if(R_EXECUTABLE)
      # Get the location of R.
+--- a/configure
++++ b/configure
+@@ -32,7 +32,7 @@ CXXFLAGS="$CPPFLAGS $CXXFLAGS $EXTRACXXFLAGS -D_LIBCPP_DISABLE_AVAILABILITY"
+ #LDFLAGS="$R_LDFLAGS $R_SHLDFLAGS"
+
+ cd src
+-$CMAKE ../tools \
++$CMAKE --debug-find ../tools \
+   -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+   -DCMAKE_C_FLAGS_INIT="" \
+   -DCMAKE_CXX_FLAGS_INIT="" \
