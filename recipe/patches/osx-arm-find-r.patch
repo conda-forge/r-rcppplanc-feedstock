@@ -60,7 +60,7 @@ index df5c33e..53c9912 100644
 
  cd src
 -$CMAKE ../tools \
-+$CMAKE --trace ../tools \
++$CMAKE --trace-expand ../tools \
    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
    -DCMAKE_C_FLAGS_INIT="" \
    -DCMAKE_CXX_FLAGS_INIT="" \
