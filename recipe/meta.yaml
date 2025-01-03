@@ -26,7 +26,6 @@ requirements:
     - r-rcpp                     # [build_platform != target_platform]
     - r-rcpparmadillo            # [build_platform != target_platform]
     - r-matrix                   # [build_platform != target_platform]
-    - cross-r-base {{ r_base }}  # [build_platform != target_platform]
     - gnuconfig  # [unix]
     - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
