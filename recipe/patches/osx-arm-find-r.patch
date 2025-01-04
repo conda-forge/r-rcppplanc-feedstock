@@ -1,5 +1,5 @@
 diff --git a/tools/cmake/FindR.cmake b/tools/cmake/FindR.cmake
-index df5c33e..53c9912 100644
+index df5c33e..42c5078 100644
 --- a/tools/cmake/FindR.cmake
 +++ b/tools/cmake/FindR.cmake
 @@ -35,7 +35,7 @@ set(TEMP_CMAKE_FIND_APPBUNDLE ${CMAKE_FIND_APPBUNDLE})
@@ -11,7 +11,7 @@ index df5c33e..53c9912 100644
  
  if(R_EXECUTABLE)
      # Get the location of R.
-@@ -58,28 +58,12 @@ if(R_EXECUTABLE)
+@@ -58,30 +58,12 @@ if(R_EXECUTABLE)
          string(REGEX REPLACE ".*([0-9]+\\.[0-9]+\\.[0-9]+).*" "\\1"
              R_VERSION_STRING "${R_VERSION_STRING}")
      endif()
@@ -37,12 +37,14 @@ index df5c33e..53c9912 100644
 -                OUTPUT_VARIABLE R_MAKECONF
 -                ERROR_VARIABLE  R_MAKECONF
 -                OUTPUT_STRIP_TRAILING_WHITESPACE)
+-string(REGEX MATCHALL "\".*\"" R_MAKECONF "${R_MAKECONF}")
+-string(REGEX REPLACE "\"" "" R_MAKECONF "${R_MAKECONF}")
 +set(_R_INCLUDE_location "$ENV{PREFIX}/lib/R/include/")
 +set(R_MAKECONF "$ENV{BUILD_PREFIX}/lib/R/etc/Makeconf.$ENV{target_platform}")
- string(REGEX MATCHALL "\".*\"" R_MAKECONF "${R_MAKECONF}")
- string(REGEX REPLACE "\"" "" R_MAKECONF "${R_MAKECONF}")
  # find libR by way of makeconf
-@@ -113,8 +97,8 @@ endforeach()
+ execute_process(COMMAND sed -e "s/^LIBR = //" -e "t" -e "d" "${R_MAKECONF}"
+                 OUTPUT_VARIABLE LIBR_STRING
+@@ -113,8 +95,8 @@ endforeach()
      set(R_INCLUDE_DIR ${_R_INCLUDE_location})
      set(R_LDFLAGS ${LIBR_STRING})
  
@@ -64,3 +66,4 @@ index df5c33e..53c9912 100644
    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
    -DCMAKE_C_FLAGS_INIT="" \
    -DCMAKE_CXX_FLAGS_INIT="" \
+   
