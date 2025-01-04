@@ -116,15 +116,4 @@ index df5c33e..8fa8880 100644
  
  # from scivision/patchfile, MIT license c. Michael
  if(WIN32)
---- a/configure
-+++ b/configure
-@@ -32,7 +32,7 @@ CXXFLAGS="$CPPFLAGS $CXXFLAGS $EXTRACXXFLAGS -D_LIBCPP_DISABLE_AVAILABILITY"
- #LDFLAGS="$R_LDFLAGS $R_SHLDFLAGS"
-
- cd src
--$CMAKE ../tools \
-+$CMAKE --trace-expand ../tools \
-   -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-   -DCMAKE_C_FLAGS_INIT="" \
-   -DCMAKE_CXX_FLAGS_INIT="" \
    
