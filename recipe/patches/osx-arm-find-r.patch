@@ -44,7 +44,7 @@ index df5c33e..8fa8880 100644
 -string(REGEX MATCHALL "\".*\"" R_MAKECONF "${R_MAKECONF}")
 -string(REGEX REPLACE "\"" "" R_MAKECONF "${R_MAKECONF}")
 +set(R_INCLUDE_DIR "$ENV{PREFIX}/lib/R/include/")
-+set(R_MAKECONF "$ENV{BUILD_PREFIX}/lib/R/etc/Makeconf.$ENV{target_platform}")
++set(R_MAKECONF "$ENV{PREFIX}/lib/R/etc/Makeconf.$ENV{target_platform}")
  # find libR by way of makeconf
  execute_process(COMMAND sed -e "s/^LIBR = //" -e "t" -e "d" "${R_MAKECONF}"
                  OUTPUT_VARIABLE LIBR_STRING
