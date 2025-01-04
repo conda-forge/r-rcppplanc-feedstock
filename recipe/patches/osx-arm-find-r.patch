@@ -1,5 +1,5 @@
 diff --git a/tools/cmake/FindR.cmake b/tools/cmake/FindR.cmake
-index df5c33e..8fa8880 100644
+index df5c33e..cad13f8 100644
 --- a/tools/cmake/FindR.cmake
 +++ b/tools/cmake/FindR.cmake
 @@ -35,7 +35,7 @@ set(TEMP_CMAKE_FIND_APPBUNDLE ${CMAKE_FIND_APPBUNDLE})
@@ -44,11 +44,11 @@ index df5c33e..8fa8880 100644
 -string(REGEX MATCHALL "\".*\"" R_MAKECONF "${R_MAKECONF}")
 -string(REGEX REPLACE "\"" "" R_MAKECONF "${R_MAKECONF}")
 +set(R_INCLUDE_DIR "$ENV{PREFIX}/lib/R/include/")
-+set(R_MAKECONF "$ENV{PREFIX}/lib/R/etc/Makeconf.$ENV{target_platform}")
++set(R_MAKECONF "$ENV{BUILD_PREFIX}/lib/R/etc/Makeconf.$ENV{target_platform}")
  # find libR by way of makeconf
  execute_process(COMMAND sed -e "s/^LIBR = //" -e "t" -e "d" "${R_MAKECONF}"
                  OUTPUT_VARIABLE LIBR_STRING
-@@ -107,14 +89,11 @@ foreach(VAR IN LISTS MAKECONF_REPLACE)
+@@ -107,14 +89,12 @@ foreach(VAR IN LISTS MAKECONF_REPLACE)
      endif()
  endforeach()
      # Some cleanup in location of R.
@@ -57,6 +57,7 @@ index df5c33e..8fa8880 100644
      string(REGEX REPLACE "\"" "" LIBR_STRING "${LIBR_STRING}")
 -    set(R_INCLUDE_DIR ${_R_INCLUDE_location})
      set(R_LDFLAGS ${LIBR_STRING})
++    string(REPLACE "_build_env" "_h_env" R_LDFLAGS ${R_LDFLAGS})
  
 -mark_as_advanced(RSCRIPT_EXECUTABLE R_EXECUTABLE)
 -set(_REQUIRED_R_VARIABLES R_EXECUTABLE RSCRIPT_EXECUTABLE R_INCLUDE_DIR R_LDFLAGS)
