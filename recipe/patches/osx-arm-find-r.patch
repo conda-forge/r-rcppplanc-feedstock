@@ -1,5 +1,5 @@
 diff --git a/tools/cmake/FindR.cmake b/tools/cmake/FindR.cmake
-index df5c33e..b8e1d1f 100644
+index df5c33e..8fa8880 100644
 --- a/tools/cmake/FindR.cmake
 +++ b/tools/cmake/FindR.cmake
 @@ -35,7 +35,7 @@ set(TEMP_CMAKE_FIND_APPBUNDLE ${CMAKE_FIND_APPBUNDLE})
@@ -11,8 +11,12 @@ index df5c33e..b8e1d1f 100644
  
  if(R_EXECUTABLE)
      # Get the location of R.
-@@ -58,30 +58,12 @@ if(R_EXECUTABLE)
-         string(REGEX REPLACE ".*([0-9]+\\.[0-9]+\\.[0-9]+).*" "\\1"
+@@ -55,33 +55,15 @@ if(R_EXECUTABLE)
+     )
+ 
+     if(RESULT EQUAL 0)
+-        string(REGEX REPLACE ".*([0-9]+\\.[0-9]+\\.[0-9]+).*" "\\1"
++        string(REGEX REPLACE "R version ([0-9]+\\.[0-9]+\\.[0-9]+).*" "\\1"
              R_VERSION_STRING "${R_VERSION_STRING}")
      endif()
 -
