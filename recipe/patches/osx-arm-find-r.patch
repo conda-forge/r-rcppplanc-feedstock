@@ -65,6 +65,57 @@ index df5c33e..8fa8880 100644
  
  include(FindPackageHandleStandardArgs)
  find_package_handle_standard_args(
+--- a/tools/CMakeLists.txt
++++ b/tools/CMakeLists.txt
+@@ -15,7 +15,6 @@ include(FetchContent)
+ include(ExternalProject)
+ include(CheckSymbolExists)
+ include(CheckCXXSymbolExists)
+-include(cmake/FindRModule.cmake)
+ 
+ set(CMAKE_C_STANDARD 99)
+ set(CMAKE_CXX_STANDARD 17)
+@@ -79,37 +78,14 @@ else()
+     find_package(LAPACK REQUIRED)
+ endif()
+ 
+-if(NOT(APPLE AND(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES arm64)))
+-    find_package(OpenMP)
+-endif()
+-
+-find_r_module(Rcpp)
+-find_r_module(RcppArmadillo)
+-find_r_module(RcppProgress)
+-
+ if(R_INCLUDE_DIR)
+     target_include_directories(RcppPlanc PRIVATE "${R_INCLUDE_DIR}")
+ else()
+     message(FATAL_ERROR "missing R headers")
+ endif()
+-
+-if(R_RCPP)
+-    target_include_directories(RcppPlanc PRIVATE "${R_RCPP}/include")
+-else()
+-    message(FATAL_ERROR "missing RcppArmadillo")
+-endif()
+-
+-if(R_RCPPARMADILLO)
+-    target_include_directories(RcppPlanc PRIVATE "${R_RCPPARMADILLO}/include")
+-else()
+-    message(FATAL_ERROR "missing RcppArmadillo")
+-endif()
+-
+-if(R_RCPPPROGRESS)
+-    target_include_directories(RcppPlanc PRIVATE "${R_RCPPPROGRESS}/include")
+-else()
+-    message(FATAL_ERROR "missing RcppProgress")
+-endif()
++target_include_directories(RcppPlanc PRIVATE "$ENV{PREFIX}/lib/R/library/Rcpp/include")
++target_include_directories(RcppPlanc PRIVATE "$$ENV{PREFIX}/lib/R/library/RcppArmadillo/include")
++target_include_directories(RcppPlanc PRIVATE "$ENV{PREFIX}/lib/R/library/RcppProgress/include")
+ 
+ # from scivision/patchfile, MIT license c. Michael
+ if(WIN32)
 --- a/configure
 +++ b/configure
 @@ -32,7 +32,7 @@ CXXFLAGS="$CPPFLAGS $CXXFLAGS $EXTRACXXFLAGS -D_LIBCPP_DISABLE_AVAILABILITY"
