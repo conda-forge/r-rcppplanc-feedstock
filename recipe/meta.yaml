@@ -8,6 +8,7 @@ source:
     - patches/remove-hardcoded-dep-path.patch
     - patches/add-cxx-libc-availability.patch    # [not win]
     - patches/Windows-explicit-options.patch  # [win]
+    - patches/osx-arm-find-r.patch  # [osx and arm64]
   url: https://github.com/welch-lab/RcppPlanc/archive/refs/tags/{{ version }}.tar.gz
   sha256: 70fd068ed50acf99c07f1dc158f8884fe49a327eda796a5f95b6283cf719ae29
 build:
@@ -22,6 +23,10 @@ build:
 requirements:
   build:
     - cross-r-base {{ r_base }}  # [build_platform != target_platform]
+    - r-rcppprogress             # [build_platform != target_platform]
+    - r-rcpp                     # [build_platform != target_platform]
+    - r-rcpparmadillo            # [build_platform != target_platform]
+    - r-matrix                   # [build_platform != target_platform]
     - gnuconfig  # [unix]
     - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
