@@ -111,7 +111,7 @@ index df5c33e..8fa8880 100644
 -    message(FATAL_ERROR "missing RcppProgress")
 -endif()
 +target_include_directories(RcppPlanc PRIVATE "$ENV{PREFIX}/lib/R/library/Rcpp/include")
-+target_include_directories(RcppPlanc PRIVATE "$$ENV{PREFIX}/lib/R/library/RcppArmadillo/include")
++target_include_directories(RcppPlanc PRIVATE "$ENV{PREFIX}/lib/R/library/RcppArmadillo/include")
 +target_include_directories(RcppPlanc PRIVATE "$ENV{PREFIX}/lib/R/library/RcppProgress/include")
  
  # from scivision/patchfile, MIT license c. Michael
