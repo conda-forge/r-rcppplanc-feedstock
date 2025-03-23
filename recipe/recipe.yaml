@@ -2,7 +2,6 @@ schema_version: 1
 
 context:
   version: 1.0.0-rc3
-  posix: "'m2-' if win else ''"
 
 package:
   name: r-rcppplanc
@@ -59,10 +58,13 @@ requirements:
     - if: win
       then: ${{ compiler('m2w64_cxx') }}
     - if: win
-      then: ${{ posix }}filesystem
-    - ${{ posix }}git
+      then: m2-filesystem
     - if: win
-      then: ${{ posix }}zip
+      then: m2-git
+    - if: unix
+      then: git
+    - if: win
+      then: m2-zip
     - if: not win
       then: ${{ stdlib("c") }}
     - if: win
@@ -74,8 +76,14 @@ requirements:
     - if: not osx
       then: libgomp
     - pkg-config
-    - ${{ posix }}diffutils
-    - ${{ posix }}patch
+    - if: win
+      then: m2-diffutils
+    - if: unix
+      then: diffutils
+    - if: win
+      then: m2-patch
+    - if: unix
+      then: patch
   host:
     - r-base
     - r-matrix
