@@ -119,9 +119,9 @@ requirements:
 tests:
   - script:
       - if: not win
-        then: "$R -e \"library('RcppPlanc')\""
+        then: Rscript -e \"library('RcppPlanc')\"
       - if: win
-        then: "\"%R%\" -e \"library('RcppPlanc')\""
+        then: Rscript -e \"library('RcppPlanc')\"
 
 about:
   license: GPL-2.0-or-later
