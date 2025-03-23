@@ -1,0 +1,56 @@
+# This file was generated automatically from conda-smithy. To update this configuration,
+# update the conda-forge.yml and/or the recipe/meta.yaml.
+# -*- mode: toml -*-
+
+[project]
+name = "r-rcppplanc-feedstock"
+version = "3.47.0"
+description = "Pixi configuration for conda-forge/r-rcppplanc-feedstock"
+authors = ["@conda-forge/r-rcppplanc"]
+channels = ["conda-forge"]
+platforms = ["linux-64", "linux-aarch64", "linux-ppc64le", "osx-64", "win-64"]
+
+[dependencies]
+conda-build = ">=24.1"
+conda-forge-ci-setup = "4.*"
+rattler-build = "*"
+
+[tasks]
+inspect-all = "inspect_artifacts --all-packages"
+build = "rattler-build build --recipe recipe"
+"build-linux_64_r_base4.3" = "rattler-build build --recipe recipe -m .ci_support/linux_64_r_base4.3.yaml"
+"inspect-linux_64_r_base4.3" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_r_base4.3.yaml"
+"build-linux_64_r_base4.4" = "rattler-build build --recipe recipe -m .ci_support/linux_64_r_base4.4.yaml"
+"inspect-linux_64_r_base4.4" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_r_base4.4.yaml"
+"build-linux_aarch64_r_base4.3" = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_r_base4.3.yaml"
+"inspect-linux_aarch64_r_base4.3" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_r_base4.3.yaml"
+"build-linux_aarch64_r_base4.4" = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_r_base4.4.yaml"
+"inspect-linux_aarch64_r_base4.4" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_r_base4.4.yaml"
+"build-linux_ppc64le_r_base4.3" = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_r_base4.3.yaml"
+"inspect-linux_ppc64le_r_base4.3" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_r_base4.3.yaml"
+"build-linux_ppc64le_r_base4.4" = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_r_base4.4.yaml"
+"inspect-linux_ppc64le_r_base4.4" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_r_base4.4.yaml"
+"build-osx_64_r_base4.3" = "rattler-build build --recipe recipe -m .ci_support/osx_64_r_base4.3.yaml"
+"inspect-osx_64_r_base4.3" = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_r_base4.3.yaml"
+"build-osx_64_r_base4.4" = "rattler-build build --recipe recipe -m .ci_support/osx_64_r_base4.4.yaml"
+"inspect-osx_64_r_base4.4" = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_r_base4.4.yaml"
+"build-osx_arm64_r_base4.3" = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_r_base4.3.yaml"
+"inspect-osx_arm64_r_base4.3" = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_r_base4.3.yaml"
+"build-osx_arm64_r_base4.4" = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_r_base4.4.yaml"
+"inspect-osx_arm64_r_base4.4" = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_r_base4.4.yaml"
+"build-win_64_r_base4.3" = "rattler-build build --recipe recipe -m .ci_support/win_64_r_base4.3.yaml"
+"inspect-win_64_r_base4.3" = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_r_base4.3.yaml"
+"build-win_64_r_base4.4" = "rattler-build build --recipe recipe -m .ci_support/win_64_r_base4.4.yaml"
+"inspect-win_64_r_base4.4" = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_r_base4.4.yaml"
+
+[feature.smithy.dependencies]
+conda-smithy = "*"
+
+[feature.smithy.tasks]
+build-locally = "python ./build-locally.py"
+smithy = "conda-smithy"
+rerender = "conda-smithy rerender"
+lint = "conda-smithy lint recipe"
+
+[environments]
+smithy = ["smithy"]

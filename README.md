@@ -3,19 +3,6 @@ About r-rcppplanc-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-rcppplanc-feedstock/blob/main/LICENSE.txt)
 
-
-About r-rcppplanc
------------------
-
-Home: https://github.com/welch-lab/rcppplanc
-
-Package license: GPL-2.0-or-later
-
-Summary: 'Rcpp' bindings for 'PLANC', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>.
-
-About r-rcppplanc
------------------
-
 Home: https://github.com/welch-lab/rcppplanc
 
 Package license: GPL-2.0-or-later
