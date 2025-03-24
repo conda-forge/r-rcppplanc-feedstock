@@ -119,7 +119,7 @@ requirements:
 tests:
   - script:
       - if: not win
-        then: Rscript -e \"library('RcppPlanc')\"
+        then: Rscript -e \"library\('RcppPlanc'\)\"
       - if: win
         then: Rscript -e \"library('RcppPlanc')\"
 
