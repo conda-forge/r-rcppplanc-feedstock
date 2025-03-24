@@ -76,10 +76,7 @@ index df5c33e..cad13f8 100644
  
  set(CMAKE_C_STANDARD 99)
  set(CMAKE_CXX_STANDARD 17)
-@@ -79,37 +78,14 @@ else()
-     find_package(LAPACK REQUIRED)
- endif()
- 
+@@ -82,31 +81,8 @@
 -if(NOT(APPLE AND(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES arm64)))
 -    find_package(OpenMP)
 -endif()
@@ -114,7 +111,3 @@ index df5c33e..cad13f8 100644
 +target_include_directories(RcppPlanc PRIVATE "$ENV{PREFIX}/lib/R/library/Rcpp/include")
 +target_include_directories(RcppPlanc PRIVATE "$ENV{PREFIX}/lib/R/library/RcppArmadillo/include")
 +target_include_directories(RcppPlanc PRIVATE "$ENV{PREFIX}/lib/R/library/RcppProgress/include")
- 
- # from scivision/patchfile, MIT license c. Michael
- if(WIN32)
-   
