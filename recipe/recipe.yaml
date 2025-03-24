@@ -38,7 +38,7 @@ build:
 requirements:
   build:
     - if: build_platform != target_platform
-      then: cross-r-base ${{ r_base }}.*
+      then: cross-r-base ${{ r_base }}
     - if: build_platform != target_platform
       then: r-rcppprogress
     - if: build_platform != target_platform
