@@ -1,0 +1,136 @@
+schema_version: 1
+
+context:
+  version: 1.0.0-rc3
+
+package:
+  name: r-rcppplanc
+  version: ${{ version|replace("-", "_") }}
+
+source:
+  url: https://github.com/welch-lab/RcppPlanc/archive/refs/tags/${{ version }}.tar.gz
+  sha256: 70fd068ed50acf99c07f1dc158f8884fe49a327eda796a5f95b6283cf719ae29
+  patches:
+    - patches/remove-hardcoded-dep-path.patch
+    - if: not win
+      then: patches/add-cxx-libc-availability.patch
+    - if: win
+      then: patches/Windows-explicit-options.patch
+    - if: osx and arm64
+      then: patches/osx-arm-find-r.patch
+    - if: linux and build_platform != target_platform
+      then: patches/linux-cc-r-link.patch
+
+build:
+  number: 1
+  dynamic_linking:
+    rpaths:
+      - lib/R/lib/
+      - lib/
+    missing_dso_allowlist:
+      - if: win
+        then: "*/R.dll"
+      - if: win
+        then: "*/Rblas.dll"
+      - if: win
+        then: "*/Rlapack.dll"
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then: cross-r-base ${{ r_base }}
+    - if: build_platform != target_platform
+      then: r-rcppprogress
+    - if: build_platform != target_platform
+      then: r-rcpp
+    - if: build_platform != target_platform
+      then: r-rcpparmadillo
+    - if: build_platform != target_platform
+      then: r-matrix
+    - if: unix
+      then: gnuconfig
+    - if: not win
+      then: ${{ compiler('c') }}
+    - if: win
+      then: ${{ compiler('m2w64_c') }}
+    - if: not win
+      then: ${{ compiler('cxx') }}
+    - if: win
+      then: ${{ compiler('m2w64_cxx') }}
+    - if: win
+      then: m2-filesystem
+    - if: win
+      then: m2-git
+    - if: unix
+      then: git
+    - if: win
+      then: m2-zip
+    - if: not win
+      then: ${{ stdlib("c") }}
+    - if: win
+      then: ${{ stdlib("m2w64_c") }}
+    - cmake >=3.22
+    - make
+    - if: osx
+      then: llvm-openmp
+    - if: not osx
+      then: libgomp
+    - pkg-config
+    - if: win
+      then: m2-diffutils
+    - if: unix
+      then: diffutils
+    - if: win
+      then: m2-patch
+    - if: unix
+      then: patch
+  host:
+    - r-base
+    - r-matrix
+    - r-rcpp
+    - r-rcpparmadillo
+    - r-rcppprogress
+    - libhwloc >=2.0.0,<3.0.0
+    - zlib
+    - hdf5 >=1.10
+    - if: osx
+      then: llvm-openmp
+    - if: not osx
+      then: libgomp
+    - libblas
+    - libcblas
+    - liblapack
+    - highfive <3
+    - if: win
+      then: dlfcn-win32
+  run:
+    - r-base
+    - r-matrix
+    - r-rcpp
+    - r-rcpparmadillo
+    - r-rcppprogress
+    - if: not (osx and arm64)
+      then: libblas
+    - if: osx and arm64
+      then: libblas * *accelerate
+    - if: win
+      then: libgomp
+
+tests:
+  - script:
+      - if: not win
+        then: Rscript -e \"library\('RcppPlanc'\)\"
+      - if: win
+        then: Rscript -e \"library('RcppPlanc')\"
+
+about:
+  license: GPL-2.0-or-later
+  summary: '''Rcpp'' bindings for ''PLANC'', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>.'
+  license_file:
+    - LICENSE-GPL.md
+  homepage: https://github.com/welch-lab/rcppplanc
+
+extra:
+  recipe-maintainers:
+    - theAeon
+    - conda-forge/r
