@@ -12,10 +12,9 @@ source:
   sha256: 70fd068ed50acf99c07f1dc158f8884fe49a327eda796a5f95b6283cf719ae29
   patches:
     - patches/remove-hardcoded-dep-path.patch
-    - if: not win
-      then: patches/add-cxx-libc-availability.patch
     - if: win
       then: patches/Windows-explicit-options.patch
+      else: patches/add-cxx-libc-availability.patch
     - if: osx and arm64
       then: patches/osx-arm-find-r.patch
     - if: linux and build_platform != target_platform
@@ -29,61 +28,45 @@ build:
       - lib/
     missing_dso_allowlist:
       - if: win
-        then: "*/R.dll"
-      - if: win
-        then: "*/Rblas.dll"
-      - if: win
-        then: "*/Rlapack.dll"
+        then: 
+          - "*/R.dll"
+          - "*/Rblas.dll"
+          - "*/Rlapack.dll"
 
 requirements:
   build:
     - if: build_platform != target_platform
-      then: cross-r-base ${{ r_base }}
-    - if: build_platform != target_platform
-      then: r-rcppprogress
-    - if: build_platform != target_platform
-      then: r-rcpp
-    - if: build_platform != target_platform
-      then: r-rcpparmadillo
-    - if: build_platform != target_platform
-      then: r-matrix
+      then:
+        - cross-r-base ${{ r_base }}
+        - r-rcppprogress
+        - r-rcpp
+        - r-rcpparmadillo
+        - r-matrix
     - if: unix
-      then: gnuconfig
+        - gnuconfig
+        - git
+        - diffutils
+        - patch
     - if: not win
-      then: ${{ compiler('c') }}
+      then:
+        - ${{ compiler('c') }}
+        - ${{ stdlib("c") }}
+        - ${{ compiler('cxx') }}
     - if: win
-      then: ${{ compiler('m2w64_c') }}
-    - if: not win
-      then: ${{ compiler('cxx') }}
-    - if: win
-      then: ${{ compiler('m2w64_cxx') }}
-    - if: win
-      then: m2-filesystem
-    - if: win
-      then: m2-git
-    - if: unix
-      then: git
-    - if: win
-      then: m2-zip
-    - if: not win
-      then: ${{ stdlib("c") }}
-    - if: win
-      then: ${{ stdlib("m2w64_c") }}
-    - cmake >=3.22
-    - make
+      then:
+        - ${{ compiler('m2w64_c') }}
+        - ${{ stdlib("m2w64_c") }}
+        - ${{ compiler('m2w64_cxx') }}
+        - m2-filesystem
+        - m2-zip
+        - m2-diffutils
+        - m2-patch
     - if: osx
       then: llvm-openmp
-    - if: not osx
-      then: libgomp
+      else: libgomp
+    - cmake >=3.22
+    - make
     - pkg-config
-    - if: win
-      then: m2-diffutils
-    - if: unix
-      then: diffutils
-    - if: win
-      then: m2-patch
-    - if: unix
-      then: patch
   host:
     - r-base
     - r-matrix
@@ -95,8 +78,7 @@ requirements:
     - hdf5 >=1.10
     - if: osx
       then: llvm-openmp
-    - if: not osx
-      then: libgomp
+      else: libgomp
     - libblas
     - libcblas
     - liblapack
@@ -109,19 +91,17 @@ requirements:
     - r-rcpp
     - r-rcpparmadillo
     - r-rcppprogress
-    - if: not (osx and arm64)
-      then: libblas
     - if: osx and arm64
       then: libblas * *accelerate
+      else: libblas
     - if: win
       then: libgomp
 
 tests:
   - script:
-      - if: not win
-        then: Rscript -e \"library\('RcppPlanc'\)\"
       - if: win
         then: Rscript -e \"library('RcppPlanc')\"
+        else: Rscript -e \"library\('RcppPlanc'\)\"
 
 about:
   license: GPL-2.0-or-later
