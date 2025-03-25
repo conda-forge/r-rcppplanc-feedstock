@@ -43,6 +43,7 @@ requirements:
         - r-rcpparmadillo
         - r-matrix
     - if: unix
+      then:
         - gnuconfig
         - git
         - diffutils
