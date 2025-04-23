@@ -2,9 +2,12 @@
 # update the conda-forge.yml and/or the recipe/meta.yaml.
 # -*- mode: toml -*-
 
+#                             VVVVVV  minimum `pixi` version
+"$schema" = "https://pixi.sh/v0.36.0/schema/manifest/schema.json"
+
 [project]
 name = "r-rcppplanc-feedstock"
-version = "3.47.0"
+version = "3.47.2"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/r-rcppplanc-feedstock"
 authors = ["@conda-forge/r-rcppplanc"]
 channels = ["conda-forge"]
@@ -16,41 +19,101 @@ conda-forge-ci-setup = "4.*"
 rattler-build = "*"
 
 [tasks]
-inspect-all = "inspect_artifacts --all-packages"
-build = "rattler-build build --recipe recipe"
-"build-linux_64_r_base4.3._" = "rattler-build build --recipe recipe -m .ci_support/linux_64_r_base4.3._.yaml"
-"inspect-linux_64_r_base4.3._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_r_base4.3._.yaml"
-"build-linux_64_r_base4.4._" = "rattler-build build --recipe recipe -m .ci_support/linux_64_r_base4.4._.yaml"
-"inspect-linux_64_r_base4.4._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_r_base4.4._.yaml"
-"build-linux_aarch64_r_base4.3._" = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_r_base4.3._.yaml"
-"inspect-linux_aarch64_r_base4.3._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_r_base4.3._.yaml"
-"build-linux_aarch64_r_base4.4._" = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_r_base4.4._.yaml"
-"inspect-linux_aarch64_r_base4.4._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_r_base4.4._.yaml"
-"build-linux_ppc64le_r_base4.3._" = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_r_base4.3._.yaml"
-"inspect-linux_ppc64le_r_base4.3._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_r_base4.3._.yaml"
-"build-linux_ppc64le_r_base4.4._" = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_r_base4.4._.yaml"
-"inspect-linux_ppc64le_r_base4.4._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_r_base4.4._.yaml"
-"build-osx_64_r_base4.3._" = "rattler-build build --recipe recipe -m .ci_support/osx_64_r_base4.3._.yaml"
-"inspect-osx_64_r_base4.3._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_r_base4.3._.yaml"
-"build-osx_64_r_base4.4._" = "rattler-build build --recipe recipe -m .ci_support/osx_64_r_base4.4._.yaml"
-"inspect-osx_64_r_base4.4._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_r_base4.4._.yaml"
-"build-osx_arm64_r_base4.3._" = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_r_base4.3._.yaml"
-"inspect-osx_arm64_r_base4.3._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_r_base4.3._.yaml"
-"build-osx_arm64_r_base4.4._" = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_r_base4.4._.yaml"
-"inspect-osx_arm64_r_base4.4._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_r_base4.4._.yaml"
-"build-win_64_r_base4.3._" = "rattler-build build --recipe recipe -m .ci_support/win_64_r_base4.3._.yaml"
-"inspect-win_64_r_base4.3._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_r_base4.3._.yaml"
-"build-win_64_r_base4.4._" = "rattler-build build --recipe recipe -m .ci_support/win_64_r_base4.4._.yaml"
-"inspect-win_64_r_base4.4._" = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_r_base4.4._.yaml"
+[tasks.inspect-all]
+cmd = "inspect_artifacts --all-packages"
+description = "List contents of all packages found in rattler-build build directory."
+[tasks.build]
+cmd = "rattler-build build --recipe recipe"
+description = "Build r-rcppplanc-feedstock directly (without setup scripts), no particular variant specified"
+[tasks."build-linux_64_r_base4.3._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_r_base4.3._.yaml"
+description = "Build r-rcppplanc-feedstock with variant linux_64_r_base4.3._ directly (without setup scripts)"
+[tasks."inspect-linux_64_r_base4.3._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_r_base4.3._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant linux_64_r_base4.3._"
+[tasks."build-linux_64_r_base4.4._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_64_r_base4.4._.yaml"
+description = "Build r-rcppplanc-feedstock with variant linux_64_r_base4.4._ directly (without setup scripts)"
+[tasks."inspect-linux_64_r_base4.4._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_64_r_base4.4._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant linux_64_r_base4.4._"
+[tasks."build-linux_aarch64_r_base4.3._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_r_base4.3._.yaml"
+description = "Build r-rcppplanc-feedstock with variant linux_aarch64_r_base4.3._ directly (without setup scripts)"
+[tasks."inspect-linux_aarch64_r_base4.3._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_r_base4.3._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant linux_aarch64_r_base4.3._"
+[tasks."build-linux_aarch64_r_base4.4._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_aarch64_r_base4.4._.yaml"
+description = "Build r-rcppplanc-feedstock with variant linux_aarch64_r_base4.4._ directly (without setup scripts)"
+[tasks."inspect-linux_aarch64_r_base4.4._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_aarch64_r_base4.4._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant linux_aarch64_r_base4.4._"
+[tasks."build-linux_ppc64le_r_base4.3._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_r_base4.3._.yaml"
+description = "Build r-rcppplanc-feedstock with variant linux_ppc64le_r_base4.3._ directly (without setup scripts)"
+[tasks."inspect-linux_ppc64le_r_base4.3._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_r_base4.3._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant linux_ppc64le_r_base4.3._"
+[tasks."build-linux_ppc64le_r_base4.4._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/linux_ppc64le_r_base4.4._.yaml"
+description = "Build r-rcppplanc-feedstock with variant linux_ppc64le_r_base4.4._ directly (without setup scripts)"
+[tasks."inspect-linux_ppc64le_r_base4.4._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/linux_ppc64le_r_base4.4._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant linux_ppc64le_r_base4.4._"
+[tasks."build-osx_64_r_base4.3._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_r_base4.3._.yaml"
+description = "Build r-rcppplanc-feedstock with variant osx_64_r_base4.3._ directly (without setup scripts)"
+[tasks."inspect-osx_64_r_base4.3._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_r_base4.3._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant osx_64_r_base4.3._"
+[tasks."build-osx_64_r_base4.4._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_64_r_base4.4._.yaml"
+description = "Build r-rcppplanc-feedstock with variant osx_64_r_base4.4._ directly (without setup scripts)"
+[tasks."inspect-osx_64_r_base4.4._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_64_r_base4.4._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant osx_64_r_base4.4._"
+[tasks."build-osx_arm64_r_base4.3._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_r_base4.3._.yaml"
+description = "Build r-rcppplanc-feedstock with variant osx_arm64_r_base4.3._ directly (without setup scripts)"
+[tasks."inspect-osx_arm64_r_base4.3._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_r_base4.3._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant osx_arm64_r_base4.3._"
+[tasks."build-osx_arm64_r_base4.4._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/osx_arm64_r_base4.4._.yaml"
+description = "Build r-rcppplanc-feedstock with variant osx_arm64_r_base4.4._ directly (without setup scripts)"
+[tasks."inspect-osx_arm64_r_base4.4._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/osx_arm64_r_base4.4._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant osx_arm64_r_base4.4._"
+[tasks."build-win_64_r_base4.3._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/win_64_r_base4.3._.yaml"
+description = "Build r-rcppplanc-feedstock with variant win_64_r_base4.3._ directly (without setup scripts)"
+[tasks."inspect-win_64_r_base4.3._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_r_base4.3._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant win_64_r_base4.3._"
+[tasks."build-win_64_r_base4.4._"]
+cmd = "rattler-build build --recipe recipe -m .ci_support/win_64_r_base4.4._.yaml"
+description = "Build r-rcppplanc-feedstock with variant win_64_r_base4.4._ directly (without setup scripts)"
+[tasks."inspect-win_64_r_base4.4._"]
+cmd = "inspect_artifacts --recipe-dir recipe -m .ci_support/win_64_r_base4.4._.yaml"
+description = "List contents of r-rcppplanc-feedstock packages built for variant win_64_r_base4.4._"
 
 [feature.smithy.dependencies]
 conda-smithy = "*"
-
-[feature.smithy.tasks]
-build-locally = "python ./build-locally.py"
-smithy = "conda-smithy"
-rerender = "conda-smithy rerender"
-lint = "conda-smithy lint recipe"
+[feature.smithy.tasks.build-locally]
+cmd = "python ./build-locally.py"
+description = "Build packages locally using the same setup scripts used in conda-forge's CI"
+[feature.smithy.tasks.smithy]
+cmd = "conda-smithy"
+description = "Run conda-smithy. Pass necessary arguments."
+[feature.smithy.tasks.rerender]
+cmd = "conda-smithy rerender"
+description = "Rerender the feedstock."
+[feature.smithy.tasks.lint]
+cmd = "conda-smithy lint --conda-forge recipe"
+description = "Lint the feedstock recipe"
 
 [environments]
 smithy = ["smithy"]
+# This is a copy of default, to be enabled by build_steps.sh during Docker builds
+# __PLATFORM_SPECIFIC_ENV__ = []
