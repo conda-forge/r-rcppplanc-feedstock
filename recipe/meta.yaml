@@ -28,7 +28,6 @@ requirements:
     - {{ compiler('cxx') }}            # [not win]
     - {{ compiler('m2w64_cxx') }}      # [win]
     - {{ stdlib("c") }}
-    - {{ stdlib("cxx") }}
     - {{ posix }}filesystem        # [win]
     - {{ posix }}sed               # [win]
     - {{ posix }}grep              # [win]
