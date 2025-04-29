@@ -48,6 +48,8 @@ requirements:
     - r-rcppprogress
     - r-hdf5r.extra
     - libcblas
+    - llvm-openmp  # [osx]
+    - libgomp  # [not osx]
     - libplanc
   run:
     - r-base
@@ -56,6 +58,9 @@ requirements:
     - r-rcpparmadillo
     - r-rcppprogress
     - r-hdf5r.extra
+    - libblas  # [not (osx and arm64)]
+    - libblas * *accelerate  # [osx and arm64]
+    - libgomp  # [win]
 
 test:
   commands:
