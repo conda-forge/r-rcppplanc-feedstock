@@ -47,6 +47,7 @@ requirements:
     - r-rcpparmadillo
     - r-rcppprogress
     - r-hdf5r.extra
+    - libcblas
     - libplanc
   run:
     - r-base
