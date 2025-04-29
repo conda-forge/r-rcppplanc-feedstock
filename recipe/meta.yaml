@@ -6,10 +6,11 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  url:
-    - {{ cran_mirror }}/src/contrib/RcppPlanc_{{ version }}.tar.gz
-    - {{ cran_mirror }}/src/contrib/Archive/RcppPlanc/RcppPlanc_{{ version }}.tar.gz
-  sha256: 6c579ad844f73c8cd03a1824c42f8ddc06c93f67deb3a072a99f633e7a063d4c
+  - url:
+      - {{ cran_mirror }}/src/contrib/RcppPlanc_{{ version }}.tar.gz
+      - {{ cran_mirror }}/src/contrib/Archive/RcppPlanc/RcppPlanc_{{ version }}.tar.gz
+    sha256: 6c579ad844f73c8cd03a1824c42f8ddc06c93f67deb3a072a99f633e7a063d4c
+  - path: Makevars
 
 build:
   number: 0
