@@ -1,3 +1,5 @@
+set LIBRARY_INC=%LIBRARY_INC:\=/%
+
 del configure.ucrt configure
 move Makevars.ucrt src/Makevars.ucrt
 "%R%" CMD INSTALL --build . %R_ARGS%
