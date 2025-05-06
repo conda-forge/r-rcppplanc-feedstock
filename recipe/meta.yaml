@@ -48,7 +48,8 @@ requirements:
     - r-rcpparmadillo
     - r-rcppprogress
     - r-hdf5r.extra
-    - libcblas
+    - libcblas  # [not (osx and arm64)]
+    - libcblas * *accelerate  # [osx and arm64]
     - llvm-openmp  # [osx]
     - libgomp  # [not osx]
     - libplanc
