@@ -1,3 +1,4 @@
+set LIBRARY_LIB=%LIBRARY_LIB:\=/%
 set LIBRARY_INC=%LIBRARY_INC:\=/%
 
 del configure.ucrt configure
