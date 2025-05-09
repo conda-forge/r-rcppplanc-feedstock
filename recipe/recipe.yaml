@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: 1.0.0-rc3
+  version: "2.0.7"
 
 package:
   name: r-rcppplanc
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/welch-lab/RcppPlanc/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 70fd068ed50acf99c07f1dc158f8884fe49a327eda796a5f95b6283cf719ae29
+  sha256: 4f97e3627f9bedaa646719a582b313aebdc65f5716770c95d7c651c2878dac80
   patches:
     - patches/remove-hardcoded-dep-path.patch
     - if: win
@@ -21,14 +21,14 @@ source:
       then: patches/linux-cc-r-link.patch
 
 build:
-  number: 1
+  number: 0
   dynamic_linking:
     rpaths:
       - lib/R/lib/
       - lib/
     missing_dso_allowlist:
       - if: win
-        then: 
+        then:
           - "*/R.dll"
           - "*/Rblas.dll"
           - "*/Rlapack.dll"
@@ -53,8 +53,7 @@ requirements:
         - ${{ compiler('c') }}
         - ${{ stdlib("c") }}
         - ${{ compiler('cxx') }}
-    - if: win
-      then:
+      else:
         - ${{ compiler('m2w64_c') }}
         - ${{ stdlib("m2w64_c") }}
         - ${{ compiler('m2w64_cxx') }}
@@ -106,7 +105,8 @@ tests:
 
 about:
   license: GPL-2.0-or-later
-  summary: '''Rcpp'' bindings for ''PLANC'', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>.'
+  summary: '''Rcpp'' bindings for ''PLANC'', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019)
+    <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>.'
   license_file:
     - LICENSE-GPL.md
   homepage: https://github.com/welch-lab/rcppplanc
