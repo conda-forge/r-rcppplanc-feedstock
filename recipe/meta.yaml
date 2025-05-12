@@ -40,6 +40,8 @@ requirements:
     - {{ posix }}make
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - libgcc < 15  # [win]
+    - libgomp < 15  # [win]
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
     - r-matrix                     # [build_platform != target_platform]
     - r-rcpp                       # [build_platform != target_platform]
@@ -54,8 +56,10 @@ requirements:
     - r-rcppprogress
     - r-hdf5r.extra
     - libcblas
+    - libgcc < 15  # [win]
+    - libgomp < 15  # [win]
     - llvm-openmp  # [osx]
-    - libgomp  # [not osx]
+    - libgomp  # [linux]
     - libplanc * mingw*  # [win]
     - libplanc  # [not win]
   run:
@@ -67,7 +71,8 @@ requirements:
     - r-hdf5r.extra
     - libblas  # [not (osx and arm64)]
     - libblas * *accelerate  # [osx and arm64]
-    - libgomp  # [win]
+    - libgcc < 15  # [win]
+    - libgomp < 15  # [win]
 
 test:
   commands:
