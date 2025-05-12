@@ -57,7 +57,8 @@ requirements:
     - libcblas * *accelerate  # [osx and arm64]
     - llvm-openmp  # [osx]
     - libgomp  # [not osx]
-    - libplanc
+    - libplanc * mingw*  # [win]
+    - libplanc  # [not win]
   run:
     - r-base
     - r-matrix
