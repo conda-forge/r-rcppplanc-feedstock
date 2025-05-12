@@ -16,7 +16,7 @@ source:
 build:
   number: 0
   script_env:
-   - CPPFLAGS="-framework Accelerate"  # [osx and arm64]
+   - CXXFLAGS="-framework Accelerate"  # [osx and arm64]
   rpaths:
     - lib/R/lib/
     - lib/
