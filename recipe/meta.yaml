@@ -1,0 +1,129 @@
+{% set version = '2.0.5' %}
+{% set posix = 'm2-' if win else '' %}
+
+package:
+  name: r-rcppplanc
+  version: {{ version|replace("-", "_") }}
+
+source:
+  - url:
+      - {{ cran_mirror }}/src/contrib/RcppPlanc_{{ version }}.tar.gz
+      - {{ cran_mirror }}/src/contrib/Archive/RcppPlanc/RcppPlanc_{{ version }}.tar.gz
+    sha256: 6c579ad844f73c8cd03a1824c42f8ddc06c93f67deb3a072a99f633e7a063d4c
+  - path: Makevars_osxarm  # [osx and arm64]
+  - path: Makevars       # [not win and not (osx and arm64)]
+  - path: Makevars.ucrt  # [win]
+
+build:
+  number: 0
+  rpaths:
+    - lib/R/lib/
+    - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
+
+requirements:
+  build:
+    - {{ compiler('c') }}              # [not win]
+    - {{ compiler('m2w64_c') }}        # [win]
+    - {{ compiler('cxx') }}            # [not win]
+    - {{ compiler('m2w64_cxx') }}      # [win]
+    - {{ stdlib("c") }}
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}sed               # [win]
+    - {{ posix }}grep              # [win]
+    - {{ posix }}autoconf
+    - {{ posix }}automake          # [not win]
+    - {{ posix }}automake-wrapper  # [win]
+    - pkg-config
+    - {{ posix }}make
+    - {{ posix }}coreutils         # [win]
+    - {{ posix }}zip               # [win]
+    - libgcc <15  # [win]
+    - libgomp <15  # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - r-matrix                     # [build_platform != target_platform]
+    - r-rcpp                       # [build_platform != target_platform]
+    - r-rcpparmadillo              # [build_platform != target_platform]
+    - r-rcppprogress               # [build_platform != target_platform]
+    - r-hdf5r.extra                # [build_platform != target_platform]
+  host:
+    - r-base
+    - r-matrix
+    - r-rcpp
+    - r-rcpparmadillo
+    - r-rcppprogress
+    - r-hdf5r.extra
+    - libblas  # [not (osx and arm64)]
+    - libblas * *accelerate  # [osx and arm64]
+    - libcblas  # [not (osx and arm64)]
+    - libcblas * *accelerate  # [osx and arm64]
+    - liblapack  # [not (osx and arm64)]
+    - liblapack * *accelerate  # [osx and arm64]
+    - libgcc <15  # [win]
+    - libgomp <15  # [win]
+    - llvm-openmp  # [osx]
+    - libgomp  # [linux]
+    - libplanc * mingw*  # [win]
+    - libplanc  # [not win]
+  run:
+    - r-base
+    - r-matrix
+    - r-rcpp
+    - r-rcpparmadillo
+    - r-rcppprogress
+    - r-hdf5r.extra
+    - libblas  # [not (osx and arm64)]
+    - libblas * *accelerate  # [osx and arm64]
+    - libgcc <15  # [win]
+    - libgomp <15  # [win]
+
+test:
+  commands:
+    - $R -e "library('RcppPlanc')"           # [not win]
+    - "\"%R%\" -e \"library('RcppPlanc')\""  # [win]
+
+about:
+  home: https://github.com/welch-lab/RcppPlanc/
+  license: GPL-2.0-only
+  summary: '''Rcpp'' bindings for ''PLANC'', a highly parallel and extensible NMF/NTF  (Non-negative
+    Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al
+    (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>.
+    Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>,
+    Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>.'
+  license_family: GPL2
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
+
+extra:
+  recipe-maintainers:
+    - conda-forge/r
+
+# Package: RcppPlanc
+# Type: Package
+# Title: Parallel Low-Rank Approximation with Nonnegativity Constraints
+# Version: 2.0.5
+# Date: 2025-04-23
+# Authors@R: c( person(given = 'Andrew', family = 'Robbins', email = 'robbiand@umich.edu', role = c('aut', 'cre'), comment = c(ORCID = "0009-0001-7961-7489")), person(given = 'Yichen', family = 'Wang', email = 'wayichen@umich.edu', role = c('aut')), person(given = 'Joshua', family = 'Welch', role = c('cph'), comment = c(ORCID = "0000-0002-5869-2391")), person(given = 'Ramakrishnan', family = 'Kannan', role = c('cph'), comment = c(ORCID = "0000-0002-5852-4806")), person("Conrad", "Sanderson", role = "cph", comment = c(ORCID = "0000-0002-0049-4501")), person("Blue Brain Project/EPFL", role = "cph", comment = "HighFive Headers"), person("UT-Batelle", role = c('cph'), comment = "The original PLANC code"))
+# Description: 'Rcpp' bindings for 'PLANC', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>.
+# Encoding: UTF-8
+# Imports: methods, Rcpp, Matrix, hdf5r.Extra
+# Suggests: knitr, withr, rmarkdown, testthat (>= 3.0.0)
+# LinkingTo: Rcpp, RcppArmadillo, RcppProgress
+# License: GPL (>= 2)
+# URL: https://github.com/welch-lab/RcppPlanc/
+# BugReports: https://github.com/welch-lab/RcppPlanc/issues/
+# RoxygenNote: 7.3.2
+# SystemRequirements: C++17, cmake >= 3.21.0, hdf5, git, patch, gnumake, hwloc, GNU make
+# Config/testthat/edition: 3
+# Depends: R (>= 3.5)
+# LazyData: true
+# VignetteBuilder: knitr
+# NeedsCompilation: yes
+# Packaged: 2025-04-23 15:10:04 UTC; andrew
+# Author: Andrew Robbins [aut, cre] (<https://orcid.org/0009-0001-7961-7489>), Yichen Wang [aut], Joshua Welch [cph] (<https://orcid.org/0000-0002-5869-2391>), Ramakrishnan Kannan [cph] (<https://orcid.org/0000-0002-5852-4806>), Conrad Sanderson [cph] (<https://orcid.org/0000-0002-0049-4501>), Blue Brain Project/EPFL [cph] (HighFive Headers), UT-Batelle [cph] (The original PLANC code)
+# Maintainer: Andrew Robbins <robbiand@umich.edu>
+# Repository: CRAN
+# Date/Publication: 2025-04-23 15:50:02 UTC
