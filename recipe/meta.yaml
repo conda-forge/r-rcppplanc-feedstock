@@ -16,7 +16,8 @@ source:
 build:
   number: 0
   script_env:
-   - CXXFLAGS="-framework Accelerate"  # [osx and arm64]
+   - CONDA_CUSTOM_LD_FLAGS="-framework Accelerate"  # [osx and arm64]
+   - CONDA_CUSTOM_FLAGS="-framework Accelerate"  # [osx and arm64]
   rpaths:
     - lib/R/lib/
     - lib/
