@@ -10,14 +10,12 @@ source:
       - {{ cran_mirror }}/src/contrib/RcppPlanc_{{ version }}.tar.gz
       - {{ cran_mirror }}/src/contrib/Archive/RcppPlanc/RcppPlanc_{{ version }}.tar.gz
     sha256: 6c579ad844f73c8cd03a1824c42f8ddc06c93f67deb3a072a99f633e7a063d4c
-  - path: Makevars       # [not win]
+  - path: Makevars_osxarm  # [osx and arm64]
+  - path: Makevars       # [not win and not (osx and arm64)]
   - path: Makevars.ucrt  # [win]
 
 build:
   number: 0
-  script_env:
-   - CONDA_CUSTOM_LD_FLAGS="-framework Accelerate"  # [osx and arm64]
-   - CONDA_CUSTOM_FLAGS="-framework Accelerate"  # [osx and arm64]
   rpaths:
     - lib/R/lib/
     - lib/
