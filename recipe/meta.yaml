@@ -99,6 +99,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - theAeon
     - conda-forge/r
 
 # Package: RcppPlanc
