@@ -1,4 +1,4 @@
-{% set version = '2.0.5' %}
+{% set version = "2.0.8" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,9 +9,9 @@ source:
   - url:
       - {{ cran_mirror }}/src/contrib/RcppPlanc_{{ version }}.tar.gz
       - {{ cran_mirror }}/src/contrib/Archive/RcppPlanc/RcppPlanc_{{ version }}.tar.gz
-    sha256: 6c579ad844f73c8cd03a1824c42f8ddc06c93f67deb3a072a99f633e7a063d4c
+    sha256: 0dde6b545241cd4ee867d62b58ad9972e6ec347cbff86661539b9e3d61620f91
   - path: Makevars_osxarm  # [osx and arm64]
-  - path: Makevars       # [not win and not (osx and arm64)]
+  - path: Makevars  # [not win and not (osx and arm64)]
   - path: Makevars.ucrt  # [win]
 
 build:
@@ -88,11 +88,8 @@ test:
 about:
   home: https://github.com/welch-lab/RcppPlanc/
   license: GPL-2.0-only
-  summary: '''Rcpp'' bindings for ''PLANC'', a highly parallel and extensible NMF/NTF  (Non-negative
-    Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al
-    (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>.
-    Implements algorithms described in Welch et al. (2019) <doi:10.1016/j.cell.2019.05.006>,
-    Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>.'
+  summary: '''Rcpp'' bindings for ''PLANC'', a highly parallel and extensible NMF/NTF  (Non-negative Matrix/Tensor Factorization) library. Wraps algorithms described in Kannan et. al (2018) <doi:10.1109/TKDE.2017.2767592> and Eswar et. al (2021) <doi:10.1145/3432185>. Implements algorithms described in Welch et al. (2019)
+    <doi:10.1016/j.cell.2019.05.006>, Gao et al. (2021) <doi:10.1038/s41587-021-00867-x>, and Kriebel & Welch (2022) <doi:10.1038/s41467-022-28431-4>.'
   license_family: GPL2
   license_file:
     - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-2'
