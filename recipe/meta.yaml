@@ -58,8 +58,6 @@ requirements:
     - r-hdf5r.extra
     - libblas  # [not (osx and arm64)]
     - libblas * *accelerate  # [osx and arm64]
-    - libcblas  # [not (osx and arm64)]
-    - libcblas * *accelerate  # [osx and arm64]
     - liblapack  # [not (osx and arm64)]
     - liblapack * *accelerate  # [osx and arm64]
     - libgcc <15  # [win]
