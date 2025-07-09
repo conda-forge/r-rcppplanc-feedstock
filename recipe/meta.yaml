@@ -15,7 +15,7 @@ source:
   - path: Makevars.ucrt  # [win]
 
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -41,8 +41,6 @@ requirements:
     - {{ posix }}make
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
-    - libgcc <14.3  # [win]
-    - libgomp <14.3  # [win]
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
     - r-matrix                     # [build_platform != target_platform]
     - r-rcpp                       # [build_platform != target_platform]
@@ -60,8 +58,6 @@ requirements:
     - libblas * *accelerate  # [osx and arm64]
     - liblapack  # [not (osx and arm64)]
     - liblapack * *accelerate  # [osx and arm64]
-    - libgcc <14.3  # [win]
-    - libgomp <14.3  # [win]
     - llvm-openmp  # [osx]
     - libgomp  # [linux]
     - libplanc * mingw*  # [win]
@@ -75,8 +71,6 @@ requirements:
     - r-hdf5r.extra
     - libblas  # [not (osx and arm64)]
     - libblas * *accelerate  # [osx and arm64]
-    - libgcc <14.3  # [win]
-    - libgomp <14.3  # [win]
 
 test:
   commands:
