@@ -1,4 +1,4 @@
-{% set version = "2.0.12" %}
+{% set version = "2.0.13" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,13 +9,13 @@ source:
   - url:
       - {{ cran_mirror }}/src/contrib/RcppPlanc_{{ version }}.tar.gz
       - {{ cran_mirror }}/src/contrib/Archive/RcppPlanc/RcppPlanc_{{ version }}.tar.gz
-    sha256: 638c2ae47708f121d642e4a239e1fb5554d35e20924b8939c8521cec17931e91
+    sha256: 22a7515fdf9a1f425eb7b5e99b9dcc546498020831239652a67be2e7b29c2e91
   - path: Makevars_osxarm  # [osx and arm64]
   - path: Makevars  # [not win and not (osx and arm64)]
   - path: Makevars.ucrt  # [win]
 
 build:
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
