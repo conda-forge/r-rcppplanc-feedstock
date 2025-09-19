@@ -15,7 +15,7 @@ source:
   - path: Makevars.ucrt  # [win]
 
 build:
-  number: 1
+  number: 2
   rpaths:
     - lib/R/lib/
     - lib/
