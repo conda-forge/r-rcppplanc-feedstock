@@ -10,6 +10,8 @@ source:
       - {{ cran_mirror }}/src/contrib/RcppPlanc_{{ version }}.tar.gz
       - {{ cran_mirror }}/src/contrib/Archive/RcppPlanc/RcppPlanc_{{ version }}.tar.gz
     sha256: 22a7515fdf9a1f425eb7b5e99b9dcc546498020831239652a67be2e7b29c2e91
+    patches:
+      - DESCRIPTION.patch
   - path: Makevars_osxarm  # [osx and arm64]
   - path: Makevars  # [not win and not (osx and arm64)]
   - path: Makevars.ucrt  # [win]

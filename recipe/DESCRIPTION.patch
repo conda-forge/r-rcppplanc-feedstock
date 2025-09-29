@@ -1,0 +1,25 @@
+From f2df468e8241932a2a7b60a43df07523513b6304 Mon Sep 17 00:00:00 2001
+From: Andrew Robbins <andrew@robbinsa.me>
+Date: Mon, 29 Sep 2025 12:17:15 -0400
+Subject: [PATCH] highfive remove
+
+---
+ DESCRIPTION | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/DESCRIPTION b/DESCRIPTION
+index 82a8d63..89458b0 100644
+--- a/DESCRIPTION
++++ b/DESCRIPTION
+@@ -31,7 +31,7 @@ Suggests:
+     withr,
+     rmarkdown,
+     testthat (>= 3.0.0)
+-LinkingTo: Rcpp, RcppArmadillo, RcppProgress, HighFive
++LinkingTo: Rcpp, RcppArmadillo, RcppProgress
+ License: GPL (>= 2)
+ URL: https://github.com/welch-lab/RcppPlanc/
+ BugReports: https://github.com/welch-lab/RcppPlanc/issues/
+-- 
+2.51.0.windows.1
+
