@@ -1,0 +1,17 @@
+diff --git a/DESCRIPTION b/DESCRIPTION
+index 82a8d63..89458b0 100644
+index cffda77..12506ac 100644
+--- a/DESCRIPTION.2
++++ b/DESCRIPTION
+@@ -23,7 +23,7 @@ Description: 'Rcpp' bindings for 'PLANC', a highly parallel
+ Encoding: UTF-8
+ Imports: methods, Rcpp, Matrix, hdf5r.Extra
+ Suggests: knitr, withr, rmarkdown, testthat (>= 3.0.0)
+-LinkingTo: Rcpp, RcppArmadillo, RcppProgress, HighFive
++LinkingTo: Rcpp, RcppArmadillo, RcppProgress
+ License: GPL (>= 2)
+ URL: https://github.com/welch-lab/RcppPlanc/
+ BugReports: https://github.com/welch-lab/RcppPlanc/issues/
+-- 
+2.51.0.windows.1
+
